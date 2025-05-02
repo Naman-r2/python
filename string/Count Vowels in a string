@@ -1,0 +1,7 @@
+def count_vowels(s):
+   s=s.lower()
+   f=0
+   for i in s:
+       if i in "aeiou":
+           f+=1
+   return f
