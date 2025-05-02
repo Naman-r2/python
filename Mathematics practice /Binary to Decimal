@@ -1,0 +1,7 @@
+def binary_to_decimal(binary_str):
+    d=0
+    length=len(binary_str)
+    for i in range(length):
+        if binary_str[length-1-i]=='1':
+            d+=2**i
+    return d
