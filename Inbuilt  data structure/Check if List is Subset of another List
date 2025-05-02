@@ -1,0 +1,12 @@
+def is_subset(lst1, lst2):
+    
+    for i in lst1:
+        p=0
+        for j in lst2:
+            if i==j:
+               p=1
+               break
+        if p==0:
+            return False
+    return True
+    
