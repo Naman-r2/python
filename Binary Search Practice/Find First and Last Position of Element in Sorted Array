@@ -1,0 +1,38 @@
+def searchRange(nums, target):
+    def first(nums,target):
+        n=len(nums)
+        s=0
+        e=n-1
+        res=-1
+        while s<=e:
+            mid=s+(e-s)//2
+            if nums[mid]==target:
+                res=mid
+                e=mid-1
+            elif nums[mid]<target:
+                s=mid+1 
+            else: 
+                e=mid-1 
+        return res
+    def last(nums,target):
+        n=len(nums)
+        s=0
+        e=n-1
+        re=-1
+        while s<=e:
+            mid=s+(e-s)//2
+            if nums[mid]==target:
+                re=mid
+                s=mid+1
+            elif nums[mid]<target:
+                s=mid+1 
+            else: 
+                e=mid-1 
+        return re
+    k=first(nums,target)
+    l=last(nums,target)
+    
+    return [k,l]
+    
+        
+        
