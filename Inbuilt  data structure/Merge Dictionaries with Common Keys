@@ -1,0 +1,9 @@
+def merge_dicts_with_overlapping_keys(dicts):
+    d={}
+    for i in dicts:
+        for key,values in i.items():
+            if key in d:
+                d[key]+=values
+            else:
+                d[key]=values
+    return d  
