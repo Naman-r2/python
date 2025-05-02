@@ -1,0 +1,7 @@
+def rotate_list(lst, k):
+    n=len(lst)
+    l=[0]*n
+  
+    for i in range(n):
+        l[(i+k)%n]=lst[i]
+    return l
