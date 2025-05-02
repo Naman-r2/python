@@ -1,0 +1,5 @@
+def rotate_left(ARR, D):
+    D=D%len(ARR)
+    return ARR[D:]+ARR[:D]
+
+        
