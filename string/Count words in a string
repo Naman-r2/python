@@ -1,0 +1,12 @@
+def count_words(s):
+    
+    k=0
+    in_word=False
+    for i in s:
+        if i!=' ':
+            if not in_word:
+                in_word=True
+                k+=1
+        else:
+            in_word=False
+    return k
