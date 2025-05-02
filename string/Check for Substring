@@ -1,0 +1,20 @@
+def is_substring(s, t):
+
+    len_s=0
+    len_t=0
+    while s[len_s:]:
+        len_s+=1
+    while t[len_t:]:
+        len_t+=1
+    if len_t>len_s:
+        return False
+    for i in range(len_s-len_t+1):
+        m=True
+        for j in range(len_t):
+            if s[i+j]!=t[j]:
+                m=False
+                break
+        if m:
+            return True
+    return False
+        
