@@ -1,0 +1,16 @@
+def generate_hollow_square(n):
+    sq = []  # Initialize an empty list
+
+    # First row (all stars)
+    sq.append('*' * n)
+
+    # Middle rows (hollow part)
+    for i in range(1, n - 1):
+        sq.append('*' + ' ' * (n - 2) + '*')
+
+    # Last row (all stars), only if n > 1 to avoid duplication
+    if n > 1:
+        sq.append('*' * n)
+
+    return sq
+
