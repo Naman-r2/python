@@ -1,0 +1,10 @@
+def longest_word_length(s):
+    count,m=0,0
+    for i in s:
+       if i!=' ':
+           count+=1 
+       else:
+           count=0
+       m=max(m,count)
+    return m
+        
