@@ -1,0 +1,5 @@
+def find_missing_number(nums):
+   n=len(nums)
+   suml = n*(n+1)//2
+   act=sum(nums)
+   return suml-act
