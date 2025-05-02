@@ -1,0 +1,10 @@
+def is_palindrome(lst):
+    n=len(lst)
+    s=0
+    e=n-1
+    while s<e:
+        if lst[s]!=lst[e]:
+            return False
+        s+=1 
+        e-=1 
+    return True
