@@ -1,0 +1,4 @@
+def calculate_y(slope, intercept, x):
+    m=slope
+    b=intercept
+    return m*x+b
