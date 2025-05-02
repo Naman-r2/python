@@ -1,0 +1,7 @@
+def merge_lists_to_dictionary(keys, values):
+    if len(keys) != len(values):  # Check for length mismatch
+        return False
+    result={}
+    for i in range(len(keys)):
+        result[keys[i]]=values[i]
+    return result
