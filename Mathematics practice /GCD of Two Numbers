@@ -1,0 +1,8 @@
+def gcd(n, m):
+    
+    n=abs(n)
+    m=abs(m)
+    while m!=0:
+        n,m=m,n%m
+    return n
+        
