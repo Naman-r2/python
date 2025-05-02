@@ -1,0 +1,14 @@
+def remove_duplicates(lst):
+    p=[]
+    p.append(lst[0])
+    for i in lst:
+        found=False
+        for j in p:
+            if j ==i:
+                found=True
+                break
+        if not found:
+            p.append(i)
+    return p
+        
+    
