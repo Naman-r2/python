@@ -1,0 +1,9 @@
+def remove_duplicates(s):
+    f=[]
+    for i in s:
+        if i in f:
+            continue
+        else:
+            f.append(i)
+    s="".join(f)
+    return s
