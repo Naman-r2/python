@@ -1,0 +1,33 @@
+def matrix_reshape(mat, r, c):
+    """
+    Function to reshape a matrix.
+    :param mat: List[List[int]] -> The original matrix
+    :param r: int -> Number of rows in reshaped matrix
+    :param c: int -> Number of columns in reshaped matrix
+    :return: List[List[int]] -> The reshaped matrix or original matrix if not possible
+    """
+    m = len(mat)
+    n = len(mat[0])
+    
+    # Check if reshaping is possible by comparing total elements
+    if m * n != r * c:
+        return mat
+ 
+    # Flatten the matrix into a 1D list
+    flat_list = []
+    for row in mat:
+        for num in row:
+            flat_list.append(num)
+    
+    # Create a new reshaped matrix
+    reshaped_matrix = []
+    for i in range(r):
+        reshaped_matrix.append(flat_list[i * c:(i + 1) * c])
+    
+    return reshaped_matrix
+ 
+# Helper function for debugging (can be removed for production)
+def display_reshaped_matrix(mat, r, c):
+    result = matrix_reshape(mat, r, c)
+    for row in result:
+        print(row)
