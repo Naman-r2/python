@@ -1,0 +1,9 @@
+def generate_number_pyramid(n):
+    l=[]
+    for i in range(1,n+1):
+        row=[]
+        for j in range(1,i+1):
+            row.append(str(j))
+        
+        l.append(' '*(n-i)+" ".join(row)+' '*(n-i))
+    return l
