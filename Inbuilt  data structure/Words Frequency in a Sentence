@@ -1,0 +1,10 @@
+def count_word_frequency(sentence):
+    word_counts={}
+    words=sentence.lower().split()
+    for word in words:
+        if word in word_counts:
+            word_counts[word] += 1  # Increment count if word exists
+        else:
+            word_counts[word] = 1  # Initialize count if word is new
+    
+    return word_counts
