@@ -1,0 +1,14 @@
+def plus_one(digits):
+    n=len(digits)
+    r=1
+    k=0
+    for i in range(n-1,-1,-1):
+        k=digits[i]+r
+        r=k//10
+        digits[i]=k%10
+        if r==0:
+            break
+    if r:
+        digits=[r]+digits
+    return digits
+        
