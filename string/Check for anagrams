@@ -1,0 +1,16 @@
+def is_anagram(s, t):
+    
+    if len(s)!=len(t):
+        return False
+    c=[0]*26
+    k=[0]*26
+    for char in s:
+        c[ord(char)-ord('a')]+=1 
+    for char in t:
+        k[ord(char)-ord('a')]+=1 
+    for i  in range(26):
+        if c[i]!=k[i]:
+            return False
+    return True
+        
+
