@@ -1,0 +1,8 @@
+def generate_triangle(n):
+    tri = []  # Initialize an empty list
+
+    # Loop to create each row of the triangle
+    for i in range(n):
+        tri.append('*' * (i + 1))  # Add a row with i + 1 stars
+
+    return tri
