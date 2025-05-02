@@ -1,0 +1,9 @@
+def is_palindromic_tuple(tup):
+    s=0
+    e=len(tup)-1
+    while s<e:
+        if tup[s]!=tup[e]:
+            return False
+        s+=1
+        e-=1
+    return True
