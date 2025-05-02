@@ -1,0 +1,11 @@
+def reverse_string(s):
+    s = list(s)  # Convert string to a list (strings are immutable)
+    start, end = 0, len(s) - 1
+    
+    while start < end:
+        s[start], s[end] = s[end], s[start]  # Swap characters
+        start += 1
+        end -= 1
+
+    return "".join(s)  
+       
