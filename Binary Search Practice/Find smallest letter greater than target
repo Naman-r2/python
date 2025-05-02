@@ -1,0 +1,16 @@
+ef next_greatest_letter(letters, target):
+    n = len(letters)
+    s = 0
+    e = n - 1
+    ans = 0 
+
+    while s <= e:
+        mid = s + (e - s) // 2
+        if letters[mid] <= target:
+            s = mid + 1
+        else:
+            ans = mid
+            e = mid - 1
+
+    return letters[ans] if s < n else letters[0]
+
