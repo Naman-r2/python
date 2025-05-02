@@ -1,0 +1,11 @@
+def countNegatives(grid):
+    rows= len(grid)
+    cols= len(grid[0])
+    c=0
+    row = rows-1
+    col=0
+    while row>=0 and col<cols:
+        if grid[row][col]<0:
+            c+=cols-col
+            row-=1
+        else:
