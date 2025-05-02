@@ -1,2 +1,2 @@
 # python
-pattern printing code functions
+phython code functions and logic
