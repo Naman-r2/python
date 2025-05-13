@@ -1,0 +1,80 @@
+# Exception handling in Python
+# Exception handling is a mechanism to handle runtime errors in a program.
+# It allows the program to continue executing even if an error occurs without crashing the program.
+# The try-except block is used to catch and handle exceptions.
+
+# Example 1: Handling a generic exception
+try:
+    a = b  # This will raise a NameError because 'b' is not defined
+except:
+    print('Variable b is not defined')  # Handle the exception and print a message
+
+# Example 2: Handling a specific exception (NameError)
+try:
+    a = b  # This will raise a NameError
+except NameError as e:
+    print(e)  # Print the error message
+
+# Example 3: Handling a ZeroDivisionError
+try:
+    a = 10 / 0  # This will raise a ZeroDivisionError
+except ZeroDivisionError as e:
+    print(e)  # Print the error message
+
+# Example 4: Handling multiple exceptions
+try:
+    a = 1 / 2  # Perform division
+    b = c  # This will raise a NameError because 'c' is not defined
+except Exception as e:
+    print(e)  # Print the error message
+
+# Example 5: Handling user input with multiple exceptions
+try:
+    num = int(input("Enter a number: "))  # Prompt the user for input
+    result = 10 / num  # Perform division
+except ValueError as e:
+    print("Invalid input. Please enter a valid number.")  # Handle invalid input
+except ZeroDivisionError as e:
+    print("Division by zero is not allowed.")  # Handle division by zero
+except Exception as e:
+    print("An unexpected error occurred:", e)  # Handle any other exceptions
+
+# Example 6: Using try, except, and else blocks
+try:
+    num = int(input("Enter a number: "))  # Prompt the user for input
+    result = 10 / num  # Perform division
+except ValueError as e:
+    print("Invalid input. Please enter a valid number.")  # Handle invalid input
+except ZeroDivisionError as e:
+    print("Division by zero is not allowed.")  # Handle division by zero
+except Exception as e:
+    print("An unexpected error occurred:", e)  # Handle any other exceptions
+else:
+    print("The result is:", result)  # Execute if no exceptions occur
+
+# Example 7: Using try, except, else, and finally blocks
+try:
+    num = int(input("Enter a number: "))  # Prompt the user for input
+    result = 10 / num  # Perform division
+except ValueError as e:
+    print("Invalid input. Please enter a valid number.")  # Handle invalid input
+except ZeroDivisionError as e:
+    print("Division by zero is not allowed.")  # Handle division by zero
+except Exception as e:
+    print("An unexpected error occurred:", e)  # Handle any other exceptions
+else:
+    print("The result is:", result)  # Execute if no exceptions occur
+finally:
+    print("Execution complete.")  # Always execute this block
+
+# Example 8: File handling with exception handling
+try:
+    file = open('soe.txt', 'r')  # Open the file in read mode
+    content = file.read()  # Read the content of the file
+    print(content)  # Print the content of the file
+except FileNotFoundError as e:
+    print("File not found. Please check the file path.")  # Handle file not found error
+finally:
+    if 'file' in locals() and not file.closed:
+        file.close()  # Close the file
+        print("File closed.")  # Confirm file closure
