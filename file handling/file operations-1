@@ -1,0 +1,69 @@
+# This script demonstrates file handling in Python
+# It includes reading the entire content of a file and reading it line by line
+# writing to a file, appending to a file, and handling binary files
+# Open 'source.txt' in read mode and read the entire content of the file
+with open('source.txt', 'r') as file:
+    # Reading the entire file content
+    content = file.read()
+    print(content)  # Print the content of the file
+
+# Open 'source.txt' in read mode to read the file line by line
+with open('source.txt', 'r') as file:
+   for line in file:
+       # Print each line of the file
+       # The 'end' parameter in print() is used to avoid adding an extra newline
+       # after each line since 'line' already contains a newline character
+       # from the file
+       print(line.strip())#.strip() removes leading and trailing whitespace including newlines 
+
+    #write to a file(overwrite)
+with open('source.txt', 'w') as file:
+    # Write the content to 'source.txt'
+    file.write('hello world\n')
+    file.write('hello \n')
+
+# Append to a file
+with open('source.txt','a') as file:
+    # Append content to 'source.txt'
+    file.write('append operation has taken place\n')
+
+    #write a list to a file
+    lines=['line 1\n','line 2\n','line 3\n']
+    with open('source.txt','a') as file:
+        file.writelines(lines)
+        # The writelines() method writes a list of strings to the file
+# The file is automatically closed after the with block
+
+#binary file handling
+data =b'\x00\x01\x02\x03\x04\x05\x06\x07\x08\x09'
+# Open 'binaryfile.bin' in write-binary mode and write the binary data
+with open('binaryfile.bin', 'wb') as file:
+    file.write(data)  # Write the binary data to the file
+
+#read binary file
+with open('binaryfile.bin', 'rb') as file:
+    binary_content = file.read()  # Read the binary content of the file
+    print(binary_content)  # Print the binary content
+
+#copy content of one file to another
+with open('source.txt', 'r') as source_file:
+    content = source_file.read()  # Read the content of the source file
+    with open('destination.txt', 'w') as destination_file:
+        destination_file.write(content)  # Write the content to the destination file
+
+
+
+# Writing and then reading a file
+# w+ is used to write and read a file
+# The file is created if it does not exist
+# If the file exists, it is truncated to zero length
+# and opened for reading and writing
+with open('source.txt', 'w+') as file:
+    file.write('this is a test\n')
+    file.write('a test is it\n')
+    # Move the file pointer to the beginning of the file
+    file.seek(0)
+    content = file.read()
+    # Read the content of the file
+    print(content)
+
