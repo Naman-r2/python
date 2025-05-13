@@ -1,0 +1,50 @@
+# Importing the os module for interacting with the operating system
+import os
+
+# Create a new directory named 'package'
+new_dir = "package"
+os.mkdir(new_dir)  # os.mkdir() creates a new directory
+print("Directory '%s' created" % new_dir)  # Print confirmation message
+
+# List all files and directories in the current directory
+items = os.listdir('.')  # os.listdir() lists all items in the specified directory
+print(items)  # Print the list of items
+
+# Joining paths to create a full file path
+# Example 1: Joining directory name and file name
+# This creates a relative path
+
+dir_name = "folder"
+file_name = "file.txt"
+full_path = os.path.join(dir_name, file_name)  # os.path.join() joins paths
+print(full_path)  # Prints 'folder/file.txt'
+
+# Example 2: Joining paths to create an absolute path
+# This creates a full path from the current working directory
+full_path = os.path.join(os.getcwd(), dir_name, file_name)  # os.getcwd() gets the current working directory
+print(full_path)  # Prints the absolute path, e.g., '/home/user/folder/file.txt'
+
+# Check if a file exists in the current directory
+# Example 1: Using os.path.exists()
+path = 'example1.txt'
+if os.path.exists(path):  # os.path.exists() checks if the path exists
+    print(f"The file {path} exists.")
+else:
+    print(f"The file {path} does not exist.")
+
+# Example 2: Using os.path.isfile() and os.path.isdir()
+# os.path.isfile() checks if the path is a file
+# os.path.isdir() checks if the path is a directory
+path = 'example1.txt'
+if os.path.isfile(path):
+    print(f"The file {path} exists.")
+elif os.path.isdir(path):
+    print(f"The path {path} is a directory.")
+else:
+    print(f"The path {path} does not exist.")
+
+# Getting the absolute path of a file
+# os.path.abspath() converts a relative path to an absolute path
+relative_path = 'source.txt'  # Specify the relative path of the file
+absolute_path = os.path.abspath(relative_path)  # Get the absolute path
+print(f"The absolute path of {relative_path} is {absolute_path}")  # Print the absolute path
