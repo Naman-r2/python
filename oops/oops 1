@@ -1,0 +1,58 @@
+# Object-Oriented Programming (OOP) in Python
+# This script demonstrates instance variables, instance methods, and a simple bank account class.
+
+# Example 1: Instance variables in a class
+# Instance variables are defined inside the constructor (__init__) and are unique to each object.
+class dog:
+    # Constructor to initialize instance variables
+    def __init__(self, name, age):
+        self.name = name  # Name of the dog
+        self.age = age    # Age of the dog
+
+# Create an object of the dog class
+# 'dog1' is an instance of the dog class
+# The __str__ method is not defined, so printing the object shows its memory address
+# To print details, access instance variables directly
+dog1 = dog("Tommy", 5)
+print(dog1)         # Prints the object reference
+print(dog1.name)    # Prints the name of the dog
+print(dog1.age)     # Prints the age of the dog
+
+# Example 2: Defining a class with instance methods
+class dog:
+    # Constructor to initialize instance variables
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    # Instance method for the dog to bark
+    def bark(self):
+        print(f"{self.name} is barking")
+    
+# Create objects and call instance methods
+dog1 = dog("Tommy", 5)
+dog1.bark()  # Output: Tommy is barking
+dog2 = dog("Max", 3)
+dog2.bark()  # Output: Max is barking
+
+# Example 3: A simple BankAccount class with deposit, withdraw, and balance methods
+class bankAcoount:
+    def __init__(self, name, balance):
+        self.name = name      # Account holder's name
+        self.balance = balance  # Initial balance
+    def deposit(self, amount):
+        self.balance += amount
+        print(f"Deposited {amount} to {self.name}'s account. New balance is {self.balance}")
+    def withdraw(self, amount):  
+        if amount > self.balance:
+            print(f"Insufficient funds in {self.name}'s account.")
+        else:
+            self.balance -= amount
+            print(f"Withdrew {amount} from {self.name}'s account. New balance is {self.balance}")
+    def get_balance(self):
+        print(self.balance)
+    
+# Create an object of bankAcoount and perform operations
+account1 = bankAcoount("John", 1000)
+account1.deposit(500)    # Deposited 500 to John's account. New balance is 1500
+account1.withdraw(200)   # Withdrew 200 from John's account. New balance is 1300
+account1.get_balance()   # Returns the balance of John's account
