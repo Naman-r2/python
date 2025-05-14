@@ -1,0 +1,88 @@
+# Polymorphism in Python
+# This script demonstrates different types of polymorphism:
+# 1. Polymorphism with classes and methods
+# 2. Polymorphism with functions
+# 3. Polymorphism with abstract base classes
+
+# Example 1: Polymorphism with classes and methods
+# Base class
+class animal:
+    def speak(self):
+        return "Animal speaks"
+    
+# Derived class 1
+class dog(animal):
+    def speak(self):
+        return "Dog barks"
+    
+# Derived class 2
+class cat(animal):
+    def speak(self):
+        return "Cat meows"
+
+# Example of polymorphism with a function
+# This function can take any object that has a 'speak' method
+# and will call the appropriate method depending on the object's class
+def animal_sound(animal):
+    print(animal.speak())  # Calls the speak method of the passed animal object
+    
+# Create objects of dog and cat classes
+dog = dog()
+cat = cat()
+print(dog.speak())      # Output: Dog barks
+print(cat.speak())      # Output: Cat meows
+animal_sound(dog)       # Output: Dog barks
+animal_sound(cat)       # Output: Cat meows
+
+# Example 2: Polymorphism with functions and methods
+# Base class
+class shape:
+    def area(self):
+        return "area of shape"
+# Derived class 1
+class rectangle(shape):
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
+    def area(self):
+        return self.length * self.width
+# Derived class 2
+class circle(shape):
+    def __init__(self, radius):
+        self.radius = radius
+    def area(self):
+        return 3.14 * self.radius ** 2
+    
+# Example of polymorphism with a function
+def calculate_area(shape):
+    print(f" area is {shape.area()}")  # Calls the area method of the passed shape 
+
+# Create objects of rectangle and circle
+rectangle = rectangle(5, 10)
+circle = circle(7)
+calculate_area(rectangle)  # Output: area is 50
+calculate_area(circle)     # Output: area is 153.86
+
+# Example 3: Polymorphism with abstract base class
+from abc import ABC, abstractmethod
+# Abstract base class
+class vehicle(ABC):
+    @abstractmethod
+    def start_engine(self):
+        pass
+
+# Derived class 1
+class car(vehicle):
+    def start_engine(self):
+        return "Car engine started"
+
+# Derived class 2
+class bike(vehicle):
+    def start_engine(self):
+        return "Bike engine started"
+    
+# Create objects of car and bike
+car = car()
+bike = bike()
+print(car.start_engine())   # Output: Car engine started
+print(bike.start_engine())  # Output: Bike engine started
