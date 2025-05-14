@@ -1,0 +1,58 @@
+
+#inheritence
+#parent class
+#single inheritence
+class Car:
+    def __init__(self,windows,door,enginetype):
+        self.windows=windows
+        self.door=door
+        self.enginetype=enginetype
+    def drive(self):
+        print(f"driving {self.enginetype} car")
+    
+car1= Car(4,2,'petrol')
+car1.drive()
+
+#child class
+class tesla(Car):
+    def __init__(self,windows,door,enginetype,is_self_driving):
+        super().__init__(windows,door,enginetype)
+        #super() is used to call the constructor of the parent class
+        self.is_self_driving=is_self_driving
+    def self_drive(self):
+        if self.is_self_driving:
+            print("self driving mode is on")
+        else:
+            print("self driving mode is off")
+    
+tesla1=tesla(4,2,'electric',True)
+tesla1.self_drive()
+tesla1.drive()
+#tesla1.drive() is inherited from the parent class Car
+
+#multiple inheritence
+#base class 1
+class animal:
+    def __init__(self,name):
+        self.name=name
+    def eat(self):
+        print(f"{self.name} is eating")
+
+class pet:
+    def __init__(self,owner):
+        self.owner=owner
+    
+#derived class
+class dog(animal,pet):
+    def __init__(self,name,owner):
+        animal.__init__(self,name)
+        pet.__init__(self,owner)
+    def bark(self):
+        print(f"{self.name} is barking")
+
+#creating an object of the dog class
+dog1=dog("Tommy","John")
+print(dog1.name)  # Prints the name of the dog
+print(dog1.owner) # Prints the owner of the dog
+dog1.eat()   # Calls the eat method from the animal class
+dog1.bark()  # Calls the bark method from the dog class
