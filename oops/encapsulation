@@ -1,0 +1,85 @@
+# Encapsulation in Python
+# Encapsulation is the bundling of data with the methods that operate on that data.
+# It restricts direct access to some components and can prevent the accidental modification of data.
+# In Python, encapsulation is achieved by using private, protected, and public access specifiers.
+# - Public members: Accessible from outside the class (no underscore prefix)
+# - Protected members: Indicated by a single underscore (_), should not be accessed outside the class (by convention)
+# - Private members: Indicated by a double underscore (__), not accessible from outside the class
+
+# Example 1: Public variables
+class person:
+    def __init__(self, name, age):
+        self.name = name  # public variable
+        self.age = age    # public variable
+
+person1 = person("John", 30)
+print(person1.name)  # Accessing public variable
+
+def get_name(person):
+    return person.name  # Accessing public variable via function
+
+get_name(person1)  # Returns the name of the person
+
+# Example 2: Private variables
+class person:
+    def __init__(self, name, age):
+        self.__name = name  # private variable
+        self.__age = age    # private variable
+
+def get_name(person):
+    # Accessing private variable (will raise AttributeError if accessed directly outside the class)
+    return person._person__name  # Name mangling to access private variable
+
+person1 = person("John", 30)
+print(get_name(person1))  # Prints the name using name mangling
+
+# Example 3: Protected variables and inheritance
+class person:
+    def __init__(self, name, age):
+        self._name = name  # protected variable
+        self._age = age    # protected variable
+
+class employee(person):
+    def __init__(self, name, age, emp_id):
+        super().__init__(name, age)  # Call the constructor of the parent class
+        self._emp_id = emp_id  # protected variable
+
+    def get_emp_details(self):
+        return f"Name: {self._name}, Age: {self._age}, Employee ID: {self._emp_id}"
+
+employee1 = employee("John", 30, "E123")
+print(employee1.get_emp_details())  # Prints the employee details
+
+# Example 4: Encapsulation using getters and setters
+class person:
+    def __init__(self, name, age):
+        self.__name = name  # private variable
+        self.__age = age    # private variable
+
+    # Getter method for name
+    def get_name(self):
+        return self.__name
+
+    # Setter method for name
+    def set_name(self, name):
+        self.__name = name
+
+    # Getter method for age
+    def get_age(self):
+        return self.__age
+
+    # Setter method for age
+    def set_age(self, age):
+        if age > 0:
+            self.__age = age
+        else:
+            print("Age must be positive")
+
+person1 = person("John", 30)
+# Accessing private variables using getter and setter methods
+print(person1.get_name())  # Prints the name of the person
+print(person1.get_age())   # Prints the age of the person
+
+person1.set_age(34)
+print(person1.get_age())   # Prints the updated age
+person1.set_age(-5)        # Prints error message for invalid age
