@@ -1,0 +1,16 @@
+
+class error(Exception):
+    pass
+
+class dobException(error):
+    pass
+
+year=int(input("Enter year of birth: "))
+age=2025-year
+try:
+    if age>18:
+        print("Eligible to vote")
+    else:
+        raise dobException
+except dobException:
+    print("Not eligible to vote")
