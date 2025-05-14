@@ -1,0 +1,38 @@
+class BankAccount:
+    counter = 1
+
+    def __init__(self, account_holder, initial_balance):
+        self.account_holder = account_holder
+        self.balance = initial_balance
+        self.account_number = BankAccount.counter
+        BankAccount.counter += 1
+
+    def deposit(self, amount):
+        self.balance += amount
+        print(f"Amount deposited in {self.account_holder}, total balance: {self.balance}")
+
+    def withdraw(self, amount):
+        if amount > self.balance:
+            print(f"Insufficient funds in {self.account_holder}'s account.")
+        else:
+            self.balance -= amount
+            print(f"Amount withdrawn from {self.account_holder}, total balance: {self.balance}")
+
+    def transfer(self, target_account, amount):
+        if not isinstance(target_account, BankAccount):
+            print("Target must be a BankAccount instance.")
+            return
+        if amount > self.balance:
+            print(f"Transfer failed: insufficient funds in {self.account_holder}'s account.")
+            return
+        self.withdraw(amount)
+        target_account.deposit(amount)
+        print(f"Transferred {amount} from {self.account_holder} to {target_account.account_holder}")
+
+# Test the class
+a1 = BankAccount("k", 1000)
+a2 = BankAccount("l", 900)
+
+a1.deposit(900)
+a2.withdraw(40)
+a1.transfer(a2, 700)
