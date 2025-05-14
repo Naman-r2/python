@@ -1,0 +1,32 @@
+# Abstraction in Python
+# Abstraction is the concept of hiding complex reality while exposing only the necessary parts.
+# It helps to reduce programming complexity and increase efficiency for the user.
+
+from abc import ABC, abstractmethod  # Importing ABC and abstractmethod for abstract base classes
+
+# Abstract base class
+class vehicle(ABC):
+    def drive(self):
+        # Concrete method with implementation
+        print("Driving vehicle")
+    @abstractmethod
+    def fuel(self):
+        # Abstract method, must be implemented by subclasses
+        pass
+
+# Subclass implementing the abstract method
+class car(vehicle):
+    def fuel(self):
+        # Implementation of the abstract method
+        print("Car uses petrol or diesel")
+
+# Function demonstrating abstraction and polymorphism
+# It can operate on any object that is a subclass of vehicle
+# and implements the required methods
+def operate_vehicle(vehicle):
+    vehicle.drive()  # Calls the drive method of the vehicle
+    vehicle.fuel()   # Calls the fuel method of the vehicle
+
+# Create an object of car and operate it
+car = car()
+operate_vehicle(car)
