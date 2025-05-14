@@ -1,32 +1,103 @@
-# Abstraction in Python
-# Abstraction is the concept of hiding complex reality while exposing only the necessary parts.
-# It helps to reduce programming complexity and increase efficiency for the user.
+# Operator Overloading in Python
+# This script demonstrates operator overloading for custom classes (Vector and Complex).
+# Operator overloading allows custom objects to use standard operators like +, -, *, /, ==, etc.
 
-from abc import ABC, abstractmethod  # Importing ABC and abstractmethod for abstract base classes
+# Example 1: Operator overloading for a Vector class
+class Vector:
+    def __init__(self, x, y):
+        self.x = x  # x component
+        self.y = y  # y component
 
-# Abstract base class
-class vehicle(ABC):
-    def drive(self):
-        # Concrete method with implementation
-        print("Driving vehicle")
-    @abstractmethod
-    def fuel(self):
-        # Abstract method, must be implemented by subclasses
-        pass
+    def __add__(self, other):
+        # Overloads the + operator for vector addition
+        return Vector(self.x + other.x, self.y + other.y)
 
-# Subclass implementing the abstract method
-class car(vehicle):
-    def fuel(self):
-        # Implementation of the abstract method
-        print("Car uses petrol or diesel")
+    def __sub__(self, other):
+        # Overloads the - operator for vector subtraction
+        return Vector(self.x - other.x, self.y - other.y)
 
-# Function demonstrating abstraction and polymorphism
-# It can operate on any object that is a subclass of vehicle
-# and implements the required methods
-def operate_vehicle(vehicle):
-    vehicle.drive()  # Calls the drive method of the vehicle
-    vehicle.fuel()   # Calls the fuel method of the vehicle
+    def __mul__(self, scalar):
+        # Overloads the * operator for scalar multiplication
+        return Vector(self.x * scalar, self.y * scalar)
 
-# Create an object of car and operate it
-car = car()
-operate_vehicle(car)
+    def __eq__(self, value):
+        # Overloads the == operator for vector comparison
+        return self.x == value.x and self.y == value.y
+
+    def __truediv__(self, scalar):
+        # Overloads the / operator for scalar division
+        return Vector(self.x / scalar, self.y / scalar)
+
+    def __repr__(self):
+        # String representation for printing
+        return f"Vector({self.x}, {self.y})"
+    
+# Create two vector objects
+v1 = Vector(2, 3)
+v2 = Vector(4, 5)
+# Add two vector objects
+print(v1 + v2)  # Output: Vector(6, 8)
+# Subtract two vector objects        
+print(v1 - v2)  # Output: Vector(-2, -2)
+# Multiply a vector object by a scalar
+print(v1 * 2)   # Output: Vector(4, 6)
+# Divide a vector object by a scalar
+print(v1 / 2)   # Output: Vector(1.0, 1.5)
+# Compare two vector objects
+print(v1 == v2)  # Output: False
+# Compare a vector object with another vector
+print(v1 == Vector(2, 3))  # Output: True
+
+# Example 2: Operator overloading for Complex numbers
+class Complex:
+    def __init__(self, real, imag):
+        self.real = real  # Real part
+        self.imag = imag  # Imaginary part
+
+    def __add__(self, other):
+        # Overloads the + operator for complex addition
+        return Complex(self.real + other.real, self.imag + other.imag)
+
+    def __sub__(self, other):
+        # Overloads the - operator for complex subtraction
+        return Complex(self.real - other.real, self.imag - other.imag)
+
+    def __mul__(self, other):
+        # Overloads the * operator for complex multiplication
+        # (a+bi)*(c+di) = (ac-bd) + (ad+bc)i
+        return Complex(self.real * other.real - self.imag * other.imag,
+                       self.real * other.imag + self.imag * other.real)
+
+    def __truediv__(self, other):
+        # Overloads the / operator for complex division
+        # (a+bi)/(c+di) = [(ac+bd) + (bc-ad)i] / (c^2 + d^2)
+        # Numerator real part: (self.real * other.real + self.imag * other.imag)
+        # Numerator imag part: (self.imag * other.real - self.real * other.imag)
+        # Denominator: (other.real ** 2 + other.imag ** 2)
+        denom = other.real ** 2 + other.imag ** 2
+        return Complex((self.real * other.real + self.imag * other.imag) / denom,
+                       (self.imag * other.real - self.real * other.imag) / denom)
+        # This formula ensures the result is a complex number after division.
+
+    def __repr__(self):
+        # String representation for printing
+        return f"Complex({self.real}, {self.imag})"
+    def __eq__(self, other):
+        # Overloads the == operator for complex comparison
+        return self.real == other.real and self.imag == other.imag
+
+# Create two complex number objects
+c1 = Complex(2, 3)
+c2 = Complex(4, 5)
+# Add two complex numbers
+print(c1 + c2)  # Output: Complex(6, 8)
+# Subtract two complex numbers
+print(c1 - c2)  # Output: Complex(-2, -2)
+# Multiply two complex numbers
+print(c1 * c2)  # Output: Complex(-7, 22)
+# Divide two complex numbers
+print(c1 / c2)  # Output: Complex(0.61, 0.08)
+# Compare two complex numbers
+print(c1 == c2)  # Output: False
+# Compare a complex number with another complex number
+print(c1 == Complex(2, 3))  # Output: True
