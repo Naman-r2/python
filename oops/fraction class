@@ -1,0 +1,76 @@
+class Fraction:
+    def __init__(self, numerator, denominator):
+        if denominator == 0:
+            raise ValueError("Denominator cannot be zero")
+        self.numerator = numerator
+        self.denominator = denominator
+        self._simplify()
+    
+    def _find_gcd(self, a, b):
+        # Euclidean algorithm
+        while b != 0:
+            a, b = b, a % b
+        return a
+    
+    def _simplify(self):
+        gcd = self._find_gcd(abs(self.numerator), abs(self.denominator))
+        self.numerator //= gcd
+        self.denominator //= gcd
+        # Ensure denominator is positive
+        if self.denominator < 0:
+            self.numerator *= -1
+            self.denominator *= -1
+    
+    def add(self, other):
+        num = self.numerator * other.denominator + other.numerator * self.denominator
+        denom = self.denominator * other.denominator
+        return Fraction(num, denom)
+    
+    def subtract(self, other):
+        num = self.numerator * other.denominator - other.numerator * self.denominator
+        denom = self.denominator * other.denominator
+        return Fraction(num, denom)
+    
+    def multiply(self, other):
+        num = self.numerator * other.numerator
+        denom = self.denominator * other.denominator
+        return Fraction(num, denom)
+    
+    def divide(self, other):
+        if other.numerator == 0:
+             raise ValueError("Denominator cannot be zero")
+        num = self.numerator * other.denominator
+        denom = self.denominator * other.numerator
+        return Fraction(num, denom)
+    
+    def __eq__(self, other):
+        return (self.numerator == other.numerator and
+                self.denominator == other.denominator)
+    
+    def __str__(self):
+        return f"{self.numerator}/{self.denominator}"
+    
+    def __repr__(self):
+        return f"Fraction({self.numerator}, {self.denominator})"
+        
+        frac1 = Fraction(1, 2)
+frac2 = Fraction(3, 4)
+ 
+# Testing the add method
+print(frac1.add(frac2))  # Output: 5/4
+ 
+# Testing the subtract method
+print(frac1.subtract(frac2))  # Output: -1/4
+ 
+# Testing the multiply method
+print(frac1.multiply(frac2))  # Output: 3/8
+ 
+# Testing the divide method
+print(frac1.divide(frac2))  # Output: 2/3
+print(frac1.divide(Fraction(0, 1)))  # Output: Error: Cannot divide by zero
+ 
+# Testing equality
+print(frac1 == Fraction(2, 4))  # Output: True
+ 
+# Testing string representation
+print(frac1)  # Output: 1/2
