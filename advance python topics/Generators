@@ -1,0 +1,44 @@
+# Python Generators Examples
+
+# Example 1: Simple generator to yield squares of numbers
+def squares(n):
+    """Generator that yields squares of numbers from 0 to n-1."""
+    for i in range(n):
+        yield i ** 2
+
+print("Squares using generator:")
+for num in squares(3):
+    print(num)
+
+# Example 2: Using next() with a generator
+gen = squares(3)
+print("\nUsing next() with generator:")
+print(next(gen))  # Output: 0
+print(next(gen))  # Output: 1
+print(next(gen))  # Output: 4
+
+# Example 3: Another simple generator
+def my_generator():
+    yield 1
+    yield 2
+    yield 3
+
+gen = my_generator()
+print("\nValues from my_generator:")
+print(next(gen))  # Output: 1
+
+for val in gen:
+    print(val)    # Output: 2, then 3
+
+# Example 4: Reading large files efficiently using a generator
+def read_large_file(file_path):
+    """Generator to read a file line by line."""
+    with open(file_path, 'r') as file:
+        for line in file:
+            yield line
+
+# Usage example (uncomment the lines below to use with your own file)
+# file_path = 'k.txt'
+# print("\nReading file line by line:")
+# for line in read_large_file(file_path):
+#     print(line.strip())
