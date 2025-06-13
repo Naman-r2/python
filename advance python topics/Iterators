@@ -1,0 +1,23 @@
+# Iterator Example
+
+# List iterator
+lst = [1, 2, 3, 4]
+lst_iter = iter(lst)
+
+print(type(lst_iter))  # <class 'list_iterator'>
+
+# Access elements using next
+next(lst_iter)
+
+try:
+    print(next(lst_iter))  # Should print the second element
+except StopIteration:
+    print("There are no elements left in the iterator.")
+
+# String iterator
+text = "hello"
+str_iter = iter(text)
+
+print(next(str_iter))  # 'h'
+print(next(str_iter))  # 'e'
+
