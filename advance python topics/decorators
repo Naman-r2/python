@@ -1,0 +1,98 @@
+# Function copy example
+
+def welcome():
+    """Return a welcome message."""
+    return "hello mate"
+
+wel = welcome()
+print(wel)
+
+# Delete the welcome function (not usually recommended)
+del welcome
+print(wel)  # wel still holds the returned string
+
+# ----------------------------------------
+# Closures example
+
+def main_welcome(msg):
+    """
+    Closure example: Returns a function that prints a message and another string.
+    """
+    def sub_welcome_method():
+        print(msg)
+        print("pol pol pol")
+    return sub_welcome_method()
+
+main_welcome("skib skib skib")
+
+# ----------------------------------------
+# Closures with arguments
+
+def main_welcome(func, lst):
+    """
+    Closure example: Accepts a function and a list, prints a message and the result of func(lst).
+    """
+    def sub_welcome_method():
+        print("pol pol pol")
+        print(func(lst))
+    return sub_welcome_method()
+
+main_welcome(len, [1, 2, 3, 3])
+
+# ----------------------------------------
+# Decorator example
+
+def main_welcome(func):
+    """
+    Simple decorator: Calls the wrapped function.
+    """
+    def sub_welcome_method():
+        func()
+    return sub_welcome_method
+
+@main_welcome
+def cam():
+    print("you in camera")
+
+# cam() is already decorated and will run when defined
+
+# ----------------------------------------
+# Decorator example 2
+
+def my_decorator(func):
+    """
+    Decorator that prints messages before and after the function call.
+    """
+    def wrapper():
+        print("opopop")
+        func()
+        print("tumtum tum")
+    return wrapper
+
+@my_decorator
+def car():
+    print("brum brum")
+
+car()  # Calls the decorated function
+
+# ----------------------------------------
+# Decorator with arguments
+
+def repeat(n):
+    """
+    Decorator factory: Repeats the decorated function n times.
+    """
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            for _ in range(n):
+                func(*args, **kwargs)
+        return wrapper
+    return decorator
+
+@repeat(3)
+def say_hello():
+    print("hello")
+
+say_hello()  # Prints "hello" three times
+
+# End of script
