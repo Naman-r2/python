@@ -1,0 +1,12 @@
+#number of digits in a given number
+def n_d(n):
+    if(n>=1 and n<=9):
+        return 1
+    if n==0:
+        return 1
+    sN=int(n/10)
+    sA=n_d(sN)
+    ans= 1+sA
+    return ans
+
+print(n_d(120))
